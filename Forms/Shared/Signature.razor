@@ -1,0 +1,50 @@
+﻿@inject IJSRuntime JsRuntime
+
+<div>
+    <div id="wrapper">
+        <div id="canvas">
+            .
+        </div>
+    </div>
+    <button class="btn btn-primary"
+            @onclick="buttonEraseSignatureClick">
+        Unterschrift löschen
+    </button>
+    <button @onclick="Close" class="btn btn-primary">Close</button>
+    <button @onclick="Cancel" class="btn btn-secondary">Cancel</button>
+</div>
+
+@code {
+
+    private bool signatureActivated = false;
+
+    [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
+
+
+    async Task Cancel() => await ModalInstance.Cancel();
+    private async void Close()
+    {
+        var image=await JsRuntime.InvokeAsync<object>("exampleJsFunctions.signatureToImage");
+        await ModalInstance.Close(ModalResult.Ok(image));
+        //await BlazoredModal.Close(ModalResult.Ok(true,image));
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!signatureActivated)
+        {
+            JsRuntime.InvokeAsync<object>("zkSignature.capture",true);
+            signatureActivated = true;
+        }
+        base.OnAfterRender(firstRender);
+    }
+
+    private async void buttonEraseSignatureClick()
+    {
+        //await JsRuntime.InvokeAsync<object>("exampleJsFunctions.signatureToFullScreen");
+
+
+        await JsRuntime.InvokeAsync<object>("zkSignature.clear");
+        await JsRuntime.InvokeAsync<object>("zkSignature.capture",true);
+    }
+}

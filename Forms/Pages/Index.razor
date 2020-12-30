@@ -1,0 +1,333 @@
+﻿@page "/"
+@inject IJSRuntime JsRuntime
+@using System.Text
+@inject IModalService Modal
+
+<div style="text-align: center;">
+    <a target="_blank" rel="noopener noreferrer" href="https://www.wolf-gutachten.de/"><img src="/images/logo.PNG" id="imgLogo" alt="" width="200" /></a>
+</div>
+<br />
+<center>Abtretungserklärung</center>
+<br />
+<br />
+Vers. des Unfallgegners:
+<br />
+<input class="form-control" id="Name" type="text" @bind="@Name" />
+<br />
+<br />
+Versicherungsscheinnummer:
+<br />
+<input class="form-control" id="InsuranceNo" type="text" @bind="@InsuranceNo" />
+<br />
+<br />
+Schadennummer:
+<br />
+<input class="form-control" id="CaseNo" type="text" @bind="@CaseNo" />
+<br />
+<br />
+Versicherungsnehmer (Unfallgegner):
+<br />
+<input class="form-control" id="OpponentName" type="text" @bind="@OpponentName" />
+<br />
+<br />
+Kennz. des Unfallgegners:
+<br />
+<input class="form-control" id="OpponentLicPlate" type="text" @bind="@OpponentLicPlate" />
+<br />
+<br />
+Schadentag:
+<br />
+<input class="form-control" id="DamageDay" type="text" @bind="@DamageDay" />
+<br />
+<br />
+Schadenort:
+<br />
+<input class="form-control" id="DamageLoc" type="text" @bind="@DamageLoc" />
+<br />
+<br />
+Name des Geschädigten:
+<br />
+<input class="form-control" id="VictimsName" type="text" @bind="@VictimsName" />
+<br />
+<br />
+Gutachten-Nr.:
+<br />
+<input class="form-control" id="ReportNo" type="text" @bind="@ReportNo" />
+<br />
+<br />
+<br />
+
+<details>
+    <summary>Hiermit beauftrage ich das oben genannte Kfz-Sachverständigenbüro, ein Gutachten zur Schadenhöhe zu erstellen. </summary>
+    <small>
+        Das Sachverständigenbüro berechnet sein Honorar in Anlehnung an die Schadenhöhe gemäß Honorartabelle des Sachverständigenbüros zzgl. erforderlicher Nebenkosten.
+        Ich trete hiermit meinen Schadensersatzanspruch auf Erstattung der Sachverständigenkosten in Höhe des Bruttoendbetrages der Rechnung des beauftragten Sachverständigenbüros –
+        bzw. Nettoendbetrages bei Vorsteuerabzugsberechtigung – unwiderruflich erstrangig erfüllungshalber gegen den Fahrer, den Halter und den Versicherer des unfallbeteiligten Fahrzeuges an
+        das Kfz-Sachverständigenbüro ab.
+        <br />
+        Hiermit weise ich den regulierungspflichtigen Versicherer an, die Sachverständigenkosten unmittelbar an das von mir beauftragte Sachverständigenbüro zu zahlen.
+        Das Kfz-Sachverständigenbüro ist berechtigt, diese Abtretung den Anspruchsgegnern offen zu legen und den erfüllungshalber abgetretenen Anspruch auf Erstattung der Sachverständigenkosten gegenüber den Anspruchsgegnern im eigenen Namen geltend zu machen. Durch diese Abtretung werden die Ansprüche des Kfz-Sachverständigenbüros aus dem
+        Sachverständigenvertrag gegen mich nicht berührt. Es kann die Ansprüche gegen mich geltend machen, wenn und soweit der regulierungspflichtige Versicherer keine Zahlung oder lediglich
+        eine Teilzahlung leistet.
+    </small>
+</details>
+<br />
+<table>
+    <tr>
+        <td width="50"><input id="Checkbox1" type="checkbox" @bind="@IsAcceptingPrivacyCond" />  </td>
+        <td>
+            <details>
+                <summary>Ich willige in die Weitergabe personenbezogener Daten ein</summary>
+                <small>
+                    Ich erkläre hiermit meine Einwilligung, dass meine personenbezogenen Daten im Rahmen der Erstellung des von mir beauftragten Schadengutachtens an die von mir
+                    beauftragte Reparaturwerkstatt und die von mir beauftragte Anwaltskanzlei sowie an die regulierungspflichtige Versicherung zum Zwecke der Schadenregulierung weitergeleitet
+                    werden. Ich kann meine Einwilligung jederzeit mit Wirkung für die Zukunft gegenüber dem beauftragten Sachverständigen widerrufen.
+                </small>
+            </details>
+        </td>
+    </tr>
+</table>
+<br />
+Wird der Vertrag außerhalb der Geschäftsräume des oben genannten Sachverständigenbüros geschlossen, haben Kunden, die Verbraucher sind, ein 14-tägiges Widerrufsrecht. Über die
+Bedingungen, die Fristen und das Verfahren für die Ausübung des Widerrufsrechts ist der Kunde vor Erteilung des Auftrages separat informiert worden.
+<table>
+    <tr>
+        <td width="50"><input id="Checkbox2" type="checkbox" @bind="@AcceptingChancelDecl" /></td>
+        <td>Ich bestätige, dass ich die Widerrufsbelehrung und das Muster-Widerrufsformular erhalten habe.</td>
+    </tr>
+    <tr>
+        <td width="50"><input id="Checkbox3" type="checkbox" @bind="@AcceptingChancelDelc2" /></td>
+        <td>
+            <details>
+                <summary>Die Gutachtenerstellung ist vor Ablauf der Widerrufsfrist zu beginnen</summary>
+                <small>
+                    In Kenntnis der Widerrufsbelehrung fordere ich das beauftragte Sachverständigenbüro auf, mit der Gutachtenerstellung bereits vor Ablauf der Widerrufsfrist zu beginnen. Mir ist
+                    bewusst, dass ich bei vollständiger Vertragserfüllung durch den Unternehmer mein Widerrufsrecht verliere. Mir ist weiter bewusst, dass ich für den Fall, dass ich vor
+                    vollständiger Vertragserfüllung den Vertrag widerrufe, für die bis zum Widerruf bereits erbrachten Leistungen einen Wertersatz zu leisten habe.
+                </small>
+            </details>
+        </td>
+    </tr>
+    <tr>
+        <td width="50"><input id="Checkbox4" type="checkbox" @bind="@Vorzugssteuerberechtigt" /></td>
+        <td>Ich bin Vorsteuerabzugsberechtigt.</td>
+    </tr>
+</table>
+<br />
+<br />
+
+
+
+
+<div id="wrapper">
+    <button @onclick="ShowSignatureDialog" class="btn btn-primary">Unterschreiben</button>
+    <div id="canvas">
+        .
+    </div>
+</div>
+<br />
+<button class="btn btn-primary"
+        @onclick="buttonEraseClick">
+    Neues Formular
+</button>
+<button class="btn btn-primary"
+        @onclick="buttonOkClick">
+    Speichern
+</button>
+<br />
+<br />
+
+
+
+@code {
+    #region Fields
+    private string Name { get; set; }=string.Empty;
+    private string InsuranceNo { get; set; }=string.Empty;
+    private string CaseNo { get; set; }=string.Empty;
+    private string OpponentName { get; set; }=string.Empty;
+    private string OpponentLicPlate { get; set; }=string.Empty;
+    private string DamageDay { get; set; }=string.Empty;
+    private string DamageLoc { get; set; }=string.Empty;
+    private string VictimsName { get; set; }=string.Empty;
+    private string ReportNo { get; set; }="WG-444-" ;
+    private string DebugOutput { get; set; }=string.Empty;
+    private bool IsAcceptingPrivacyCond { get; set; }=false;
+    private bool AcceptingChancelDecl { get; set; }=false;
+    private bool AcceptingChancelDelc2 { get; set; }=false;
+    private bool Vorzugssteuerberechtigt { get; set; }=false;
+    private bool signatureActivated=false;
+    string image;
+    #endregion
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!signatureActivated)
+        {
+            JsRuntime.InvokeAsync<object>("zkSignature.capture",false);
+            signatureActivated = true;
+        }
+        base.OnAfterRender(firstRender);
+    }
+
+    private async void ShowSignatureDialog()
+    {
+        IModalReference formModal = Modal.Show<Signature>("Unterschrift");
+        ModalResult modalResult = await formModal.Result;
+        image = modalResult.Data.ToString();
+        await JsRuntime.InvokeAsync<object>("zkSignature.clear");
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.imageToCanvas",image);
+    }
+
+
+    private async void buttonEraseClick()
+    {
+        Name = string.Empty;
+        InsuranceNo = string.Empty;
+        CaseNo = string.Empty;
+        OpponentName = string.Empty;
+        OpponentLicPlate = string.Empty;
+        DamageDay = string.Empty;
+        DamageLoc = string.Empty;
+        VictimsName = string.Empty;
+        ReportNo = "WG-444-";
+        IsAcceptingPrivacyCond = false;
+        AcceptingChancelDecl = false;
+        AcceptingChancelDelc2 = false;
+        Vorzugssteuerberechtigt = false;
+        await JsRuntime.InvokeAsync<object>("zkSignature.clear");
+        await JsRuntime.InvokeAsync<object>("zkSignature.capture",false);
+    }
+
+    private async void buttonOkClick()
+    {
+
+        //await JsRuntime.InvokeAsync<object>("zkSignature.save");
+        try
+        {
+            CreatePDF();
+            await JsRuntime.InvokeAsync<object>("exampleJsFunctions.doNothing");
+            //System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            //document.Save(stream);
+
+            //await FileUtil.SaveAs(JsRuntime, "file.pdf", stream.ToArray());
+        }
+        catch (Exception e)
+        {
+            DebugOutput = e.Message;
+        }
+
+
+    }
+    private async void CreatePDF()
+    {
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.createPDF");
+        StringBuilder header = new StringBuilder();
+        header.AppendLine("staatl.gepr.Techniker Erwin Wolf");
+        header.AppendLine("Am Hof Sander 5");
+        header.AppendLine("49163 Bohmte");
+        header.AppendLine("");
+        header.AppendLine("Telefon: 05471/9513787");
+        header.AppendLine("Fax: 05471/9239501");
+        header.AppendLine("Mobil: 0171/2218670");
+        header.AppendLine("E-Mail: info@wolf-gutachten.de");
+
+        StringBuilder labels = new StringBuilder();
+        labels.AppendLine("Vers. des Unfallgegners:");
+        labels.AppendLine("Versicherungsscheinnummer:");
+        labels.AppendLine("Schadennummer:");
+        labels.AppendLine("Versicherungsnehmer (Unfallgegner):");
+        labels.AppendLine("Kennz. des Unfallgegners:");
+        labels.AppendLine("Schadentag:");
+        labels.AppendLine("Schadenort:");
+        labels.AppendLine("Name des Geschädigten:");
+        labels.AppendLine("Gutachten-Nr.:");
+
+
+
+        StringBuilder entries = new StringBuilder();
+        entries.AppendLine(Name);
+        entries.AppendLine(InsuranceNo);
+        entries.AppendLine(CaseNo);
+        entries.AppendLine(OpponentName);
+        entries.AppendLine(OpponentLicPlate);
+        entries.AppendLine(DamageDay);
+        entries.AppendLine(DamageLoc);
+        entries.AppendLine(VictimsName);
+        entries.AppendLine(ReportNo);
+
+
+        StringBuilder declaration1 = new StringBuilder();
+        declaration1.AppendLine("Aus Anlass des oben beschriebenen Schadenfalles beauftrage ich das oben genannte Kfz-Sachverständigenbüro,");
+        declaration1.AppendLine("ein Gutachten zur Schadenhöhe zu erstellen. Das Sachverständigenbüroberechnet sein Honorar in Anlehnung an");
+        declaration1.AppendLine("die Schadenhöhe gemäß Honorartabelle des Sachverständigenbüros zzgl. erforderlicher Nebenkosten.");
+        declaration1.AppendLine("Ich trete hiermit meinen Schadensersatzanspruch auf Erstattung der Sachverständigenkosten in Höhe des Bruttoendbetrages");
+        declaration1.AppendLine("der Rechnung des beauftragten Sachverständigenbüros – bzw. Nettoendbetrages bei Vorsteuerabzugsberechtigung – unwiderruflich ");
+        declaration1.AppendLine("erstrangig erfüllungshalber gegen den Fahrer, den Halter und den Versicherer des unfallbeteiligten Fahrzeuges an das ");
+        declaration1.AppendLine("Kfz-Sachverständigenbüro ab.");
+        declaration1.AppendLine("Hiermit weise ich den regulierungspflichtigen Versicherer an, die Sachverständigenkosten unmittelbar an das von mir");
+        declaration1.AppendLine("beauftragte Sachverständigenbüro zu zahlen.");
+        declaration1.AppendLine("Das Kfz-Sachverständigenbüro ist berechtigt, diese Abtretung den Anspruchsgegnern offen zu legen und den erfüllungshalber");
+        declaration1.AppendLine("abgetretenen Anspruch auf Erstattung der Sachverständigenkosten gegenüber den Anspruchsgegnern im eigenen Namen geltend zu machen.");
+        declaration1.AppendLine("Durch diese Abtretung werden die Ansprüche des Kfz-Sachverständigenbüros aus dem Sachverständigenvertrag gegen mich nicht berührt.");
+        declaration1.AppendLine("Es kann die Ansprüche gegen mich geltend machen, wenn und soweit der regulierungspflichtige Versicherer keine Zahlung oder lediglich");
+        declaration1.AppendLine("eine Teilzahlung leistet.");
+
+        StringBuilder declaration2 = new StringBuilder();
+        declaration2.AppendLine("Ich erkläre hiermit meine Einwilligung, dass meine personenbezogenen Daten im Rahmen der Erstellung des von mir beauftragten");
+        declaration2.AppendLine("Schadengutachtens an die von mir beauftragte Reparaturwerkstatt und die von mir beauftragte Anwaltskanzlei sowie an die regulierungspflichtige");
+        declaration2.AppendLine("Versicherung zum Zwecke der Schadenregulierung weitergeleitet werden. Ich kann meine Einwilligung jederzeit mit Wirkung");
+        declaration2.AppendLine("für die Zukunft gegenüber dem beauftragten Sachverständigen widerrufen.");
+
+        StringBuilder declaration3 = new StringBuilder();
+        declaration3.AppendLine("Ich bestätige, dass ich die Widerrufsbelehrung und das Muster-Widerrufsformular erhalten habe.");
+
+        StringBuilder declaration4 = new StringBuilder();
+        declaration4.AppendLine("In Kenntnis der Widerrufsbelehrung fordere ich das beauftragte Sachverständigenbüro auf, mit der Gutachtenerstellung bereits vor Ablauf");
+        declaration4.AppendLine("der Widerrufsfrist zu beginnen. Mir ist bewusst, dass ich bei vollständiger Vertragserfüllung durch den Unternehmer mein Widerrufsrecht verliere.");
+        declaration4.AppendLine("Mir ist weiter bewusst, dass ich für den Fall, dass ich vor vollständiger Vertragserfüllung den Vertrag widerrufe, für die bis zum Widerruf bereits");
+        declaration4.AppendLine("erbrachten Leistungen einen Wertersatz zu leisten habe.");
+
+
+
+
+
+
+
+        int y = 30;
+
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", header.ToString(), 10, 1.25, 20, y, "left", 0);
+
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addLogo", 120, y - 5, 70, 35);
+        y += 44;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", "Abtretungserklärung zugunsten des Kfz-Sachverständigen", 16, 1.0, 20, y, "left", 0);
+        y += 10;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", labels.ToString(), 12, 1.75, 90, y, "right", 0);
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", entries.ToString(), 12, 1.75, 100, y, "left", 0);
+        y += 68;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", declaration1.ToString(), 8, 1.15, 20, y, "justify", 170);
+        y += 37;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addCheckBox", 20, y, 3, 3, IsAcceptingPrivacyCond);
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", declaration2.ToString(), 8, 1.15, 30, y + 3, "justify", 160);
+        y += 20;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", "Nur bei Auftragserteilung außerhalb der Geschäftsräume", 10, 2.0, 20, y, "left", 0);
+        y += 2;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addCheckBox", 20, y, 3, 3, AcceptingChancelDecl);
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", declaration3.ToString(), 8, 1.15, 30, y + 3, "justify", 160);
+
+        y += 12;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", "Erklärung des Kunden zur Ausführung der beauftragten Arbeiten vor Ablauf der Widerrufsfrist", 10, 1.25, 20, y, "left", 0);
+        y += 2;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addCheckBox", 20, y, 3, 3, AcceptingChancelDelc2);
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", declaration4.ToString(), 8, 1.15, 30, y + 3, "justify", 160);
+        y += 16;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addCheckBox", 20, y, 3, 3, Vorzugssteuerberechtigt);
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", "Ich bin Vorsteuerabzugsberechtigt", 8, 1.15, 30, y + 3, "justify", 160);
+        y += 5;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addSignature", image, 50, y, 46 * 2, 18.4 * 2);
+        y += 33;
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", DateTime.Now.ToString("dd.MM.yyyy") + ",", 12, 1.75, 20, y, "left", 0);
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.savePDF", OpponentLicPlate.Any() ? OpponentLicPlate + ".pdf" : "doc.pdf");
+
+
+    }
+
+}
