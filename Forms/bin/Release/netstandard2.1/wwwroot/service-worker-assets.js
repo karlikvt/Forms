@@ -69,6 +69,18 @@
       "url": "icon-512.png"
     },
     {
+      "hash": "sha256-U9VwnS37b0dtmK6gswiZNeSWBukpfJsq\/Gl2pRvNE2k=",
+      "url": "icons\/icon-192x192.png"
+    },
+    {
+      "hash": "sha256-HH6ZLa1rEqvXyWzSmBlzFEilnFpmFSPNPKhEvmpvtxA=",
+      "url": "icons\/icon-512x512.png"
+    },
+    {
+      "hash": "sha256-PvE1MHPpU5yi2KQA2VLP7TKeTno6f5CFWH03Xm0kZlI=",
+      "url": "icons\/logo.PNG"
+    },
+    {
       "hash": "sha256-x5v0zunfMyXw5oNOd2AraLnt\/oSjhoeIEF6lI7xk7+c=",
       "url": "images\/logo.PNG"
     },
@@ -225,5 +237,5 @@
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "X39kZKoS"
+  "version": "TFolOHIt"
 };
