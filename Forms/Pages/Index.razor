@@ -172,9 +172,12 @@ Bedingungen, die Fristen und das Verfahren für die Ausübung des Widerrufsrecht
     {
         IModalReference formModal = Modal.Show<Signature>("Unterschrift");
         ModalResult modalResult = await formModal.Result;
-        image = modalResult.Data.ToString();
         await JsRuntime.InvokeAsync<object>("zkSignature.clear");
-        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.imageToCanvas",image);
+        if (!modalResult.Cancelled)
+        {
+            image = modalResult.Data.ToString();
+            await JsRuntime.InvokeAsync<object>("exampleJsFunctions.imageToCanvas", image);
+        }
     }
 
 
@@ -322,7 +325,7 @@ Bedingungen, die Fristen und das Verfahren für die Ausübung des Widerrufsrecht
         await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addCheckBox", 20, y, 3, 3, Vorzugssteuerberechtigt);
         await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", "Ich bin Vorsteuerabzugsberechtigt", 8, 1.15, 30, y + 3, "justify", 160);
         y += 5;
-        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addSignature", image, 50, y, 46 * 2, 18.4 * 2);
+        await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addSignature", 50, y, 46 * 2, 18.4 * 2);
         y += 33;
         await JsRuntime.InvokeAsync<object>("exampleJsFunctions.addText", DateTime.Now.ToString("dd.MM.yyyy") + ",", 12, 1.75, 20, y, "left", 0);
         await JsRuntime.InvokeAsync<object>("exampleJsFunctions.savePDF", OpponentLicPlate.Any() ? OpponentLicPlate + ".pdf" : "doc.pdf");

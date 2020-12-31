@@ -79,7 +79,7 @@ window.exampleJsFunctions = {
         pdf.addImage(dataURL, "PNG", x, y, w, h, "signature", "FAST", 0);
     },
 
-    addSignature: function (dataURL, x, y, w, h) {
+    addSignatureWithDataURL: function (dataURL, x, y, w, h) {
         var canvas = document.getElementById("newSignature");
         pdf.addImage(dataURL, "PNG", x, y, w, h, "signature", "FAST", 0);
     },
