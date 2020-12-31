@@ -97,7 +97,7 @@
       "url": "jspdf.min.js"
     },
     {
-      "hash": "sha256-Bu+1AE6geavoP2IbvntLLrX\/\/CxRYFRi0pzVuqTA0Kw=",
+      "hash": "sha256-AaeHy2u\/38LiK\/eB31fkHB0f4b7gEvcXGv7mqYaQWDM=",
       "url": "manifest.json"
     },
     {
@@ -237,5 +237,5 @@
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "TFolOHIt"
+  "version": "ntCdP4Bq"
 };
