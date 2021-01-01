@@ -1,11 +1,10 @@
 ﻿@inject IJSRuntime JsRuntime
-
 <div id="wrapper" style="border:solid">
     <div id="canvas">
         .
     </div>
 </div>
-<div class="col-xs-12" style="height:4px;"></div>
+<div class="col-xs-12" style="height:6px;"></div>
 <div>
     <button class="btn btn-primary"
             @onclick="buttonEraseSignatureClick">
@@ -28,6 +27,7 @@
     {
         await ModalInstance.Cancel();
     }
+
     private async void Close()
     {
         var image = await JsRuntime.InvokeAsync<object>("exampleJsFunctions.signatureToImage");
