@@ -23,10 +23,10 @@ var zkSignature = (function () {
 
 				if (screenwidth < 1080) {
 					canvas.width = screenwidth - 50;
-                    canvas.height = (canvas.width * 0.4);
+                    canvas.height = (canvas.width / 3);
 				} else {
-                    canvas.width = 460;
-                    canvas.height = 184;
+                    canvas.width = 462;
+                    canvas.height = 154;
 				}
 
 				context.fillStyle = "#fff";
