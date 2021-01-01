@@ -139,14 +139,14 @@ var zkSignature = (function () {
                     distanceHist[0] = distanceCurr;
                     distance = distSum / distanceHist.length;
                     lineWidth = 1;
-                    if (distance > 5) {
-                        lineWidth = 1;
+                    if (distance > 3) {
+                        lineWidth = 1.2;
                     }
-                    else if (distance < 1) {
-                        lineWidth = 5;
+                    else if (distance < 1.2) {
+                        lineWidth = 3;
                     }
                     else {
-                        lineWidth = 5 - distance;
+                        lineWidth = 4.2 - distance;
                     }
                     
                     context.lineWidth = lineWidth;
