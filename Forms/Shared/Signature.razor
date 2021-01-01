@@ -1,17 +1,19 @@
 ﻿@inject IJSRuntime JsRuntime
 
-<div>
-    <div id="wrapper">
-        <div id="canvas">
-            .
-        </div>
+<div id="wrapper" style="border:solid">
+    <div id="canvas">
+        .
     </div>
+</div>
+<div class="col-xs-12" style="height:4px;"></div>
+<div>
     <button class="btn btn-primary"
             @onclick="buttonEraseSignatureClick">
         Unterschrift löschen
     </button>
     <button @onclick="Close" class="btn btn-primary float-right">Ok</button>
 </div>
+
 
 @code {
 
@@ -20,7 +22,7 @@
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 
 
-    
+
 
     private async void Cancel()
     {
@@ -28,7 +30,7 @@
     }
     private async void Close()
     {
-        var image=await JsRuntime.InvokeAsync<object>("exampleJsFunctions.signatureToImage");
+        var image = await JsRuntime.InvokeAsync<object>("exampleJsFunctions.signatureToImage");
         await ModalInstance.Close(ModalResult.Ok(image));
     }
 
@@ -36,7 +38,7 @@
     {
         if (!signatureActivated)
         {
-            JsRuntime.InvokeAsync<object>("zkSignature.capture",true);
+            JsRuntime.InvokeAsync<object>("zkSignature.capture", true);
             signatureActivated = true;
         }
         base.OnAfterRender(firstRender);
@@ -48,6 +50,6 @@
 
 
         await JsRuntime.InvokeAsync<object>("zkSignature.clear");
-        await JsRuntime.InvokeAsync<object>("zkSignature.capture",true);
+        await JsRuntime.InvokeAsync<object>("zkSignature.capture", true);
     }
 }
