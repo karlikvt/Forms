@@ -54,7 +54,7 @@ var zkSignature = (function () {
             var xyAddLast = {};
             var calculate = false;
             var widthOld = 1;
-            var distanceHist = [4, 4, 4, 4 , 4 , 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3];
+            var distanceHist = [4, 4, 4, 4 , 4 , 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,4,4,3,3];
 
             //functions
             {
