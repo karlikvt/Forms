@@ -76,7 +76,7 @@ var zkSignature = (function () {
             var widthOld = 1;
             var distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
             window.onresize = function resizeCanvas() {
-                    if (initialized) {
+                if (initialized && window.innerWidth != screenwidth) {
                         dataURL = getDataURL();
                         empty = true;
                         screenwidth = window.innerWidth;
