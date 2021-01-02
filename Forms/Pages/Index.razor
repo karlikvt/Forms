@@ -159,10 +159,12 @@ Bedingungen, die Fristen und das Verfahren für die Ausübung des Widerrufsrecht
         IModalReference formModal = Modal.Show<Signature>("Unterschrift");
         ModalResult modalResult = await formModal.Result;
         await JsRuntime.InvokeAsync<object>("zkSignature.clear");
+
         if (!modalResult.Cancelled)
         {
             image = modalResult.Data.ToString();
             await JsRuntime.InvokeAsync<object>("exampleJsFunctions.imageToCanvas", image);
+            await JsRuntime.InvokeAsync<object>("zkSignature.capture", false);
         }
     }
 

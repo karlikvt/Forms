@@ -1,5 +1,4 @@
 ﻿window.pdf = new jsPDF("p", "mm", "a4");
-
 window.exampleJsFunctions = {
 
     populateDiv: function (element) {
