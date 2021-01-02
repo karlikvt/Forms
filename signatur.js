@@ -1,13 +1,31 @@
+
+
 var zkSignature = (function () {
 
     var empty = true;
+    var isEditingEnabled = true;
+    var initialized = false;
+
+    /*window.onresize = resizeCanvas;
+    function resizeCanvas() {
+        if (initialized) {
+            dataURL = getDataURL()();
+            this.clear();
+            this.capture(zkSignature.isEditingEnabled);
+            this.imageToCanvas(dataURL);
+        }
+        return dataURL;
+    }*/
 
     return {
         //public functions
         capture: function (editingEnabled) {
+            isEditingEnabled = editingEnabled;
+            
+            initialized = true;
             var parent = document.getElementById("canvas");
             parent.childNodes[0].nodeValue = "";
-
+            
             var canvasArea = document.createElement("canvas");
             canvasArea.setAttribute("id", "newSignature");
             parent.appendChild(canvasArea);
@@ -19,7 +37,7 @@ var zkSignature = (function () {
                 throw new Error("Failed to get canvas' 2d context");
             }
 
-            screenwidth = screen.width;
+            screenwidth = window.innerWidth;
 
             if (screenwidth < 10080) {
                 canvas.width = screenwidth - 100;
@@ -29,20 +47,22 @@ var zkSignature = (function () {
                 canvas.height = 150;
             }
 
+
+
             context.fillStyle = "#fff";
             context.strokeStyle = "#444";
-            context.lineWidth = 1.2;
+            context.lineWidth = 1.2*canvas.width * 1.0 / 465;
             context.lineCap = "round";
 
             context.fillRect(0, 0, canvas.width, canvas.height);
 
             context.fillStyle = "#3a87ad";
             context.strokeStyle = "#444";
-            context.lineWidth = 1;
+            context.lineWidth = 1 * canvas.width * 1.0 / 465;
             context.moveTo((canvas.width * 0.042), (canvas.height * 0.9));
             context.lineTo((canvas.width * 0.958), (canvas.height * 0.9));
             context.stroke();
-
+            
 
             context.fillStyle = "#fff";
             context.strokeStyle = "#444";
@@ -54,16 +74,43 @@ var zkSignature = (function () {
             var xyAddLast = {};
             var calculate = false;
             var widthOld = 1;
-            var distanceHist = [4, 4, 4, 4 , 4 , 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,4,4,3,3];
-
+            var distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
+            window.onresize = function resizeCanvas() {
+                    if (initialized) {
+                        dataURL = getDataURL();
+                        empty = true;
+                        screenwidth = window.innerWidth;
+                        canvas.width = screenwidth - 100;
+                        canvas.height = (canvas.width / 3.1);
+                        imageToCanvas(dataURL);
+                    }
+                    return dataURL;
+                }
             //functions
             {
+                
+
+                function imageToCanvas(dataURL) {
+                    if (dataURL !== undefined && dataURL !== null) {
+                        var image, imageData;
+                        image = new Image();
+
+                        image.addEventListener('load', function () {
+                            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                            //how do i return this?
+                        }, false);
+                        image.src = dataURL;
+                    }
+                }
+                function getDataURL(){
+                    return canvas.toDataURL("image/png");
+                }
+
                 function remove_event_listeners() {
                     canvas.removeEventListener('mousemove', on_mousemove, false);
                     canvas.removeEventListener('mouseup', on_mouseup, false);
                     canvas.removeEventListener('touchmove', on_mousemove, false);
                     canvas.removeEventListener('touchend', on_mouseup, false);
-
                     document.body.removeEventListener('mouseup', on_mouseup, false);
                     document.body.removeEventListener('touchend', on_mouseup, false);
                 }
@@ -149,7 +196,7 @@ var zkSignature = (function () {
                         lineWidth = 5 - distance;
                     }
 
-                    context.lineWidth = lineWidth * canvas.width*1.0/465;
+                    context.lineWidth = lineWidth * canvas.width * 1.0 / 465;
                     context.quadraticCurveTo(xyLast.x, xyLast.y, xyAdd.x, xyAdd.y);
                     pixels.push(xyAdd.x, xyAdd.y);
                     context.stroke();
@@ -178,7 +225,11 @@ var zkSignature = (function () {
             }
 
         }
+        
         ,
+
+
+
         save: function () {
             var canvas = document.getElementById("newSignature");
             // save canvas image as data url (png format by default)
