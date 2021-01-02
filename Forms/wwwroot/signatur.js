@@ -148,8 +148,8 @@ var zkSignature = (function () {
                     else {
                         lineWidth = 5 - distance;
                     }
-                    
-                    context.lineWidth = lineWidth;
+
+                    context.lineWidth = lineWidth * canvas.width*1.0/465;
                     context.quadraticCurveTo(xyLast.x, xyLast.y, xyAdd.x, xyAdd.y);
                     pixels.push(xyAdd.x, xyAdd.y);
                     context.stroke();
