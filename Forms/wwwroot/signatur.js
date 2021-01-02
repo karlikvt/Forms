@@ -21,14 +21,22 @@ var zkSignature = (function () {
         //public functions
         capture: function (editingEnabled) {
             isEditingEnabled = editingEnabled;
-            
+
             initialized = true;
             var parent = document.getElementById("canvas");
+            while (parent.childElementCount > 0) {
+                lastChild = parent.lastChild;
+                parent.removeChild(lastChild);
+            }
+           
+
             parent.childNodes[0].nodeValue = "";
-            
+
             var canvasArea = document.createElement("canvas");
             canvasArea.setAttribute("id", "newSignature");
             parent.appendChild(canvasArea);
+
+            
 
             var canvas = document.getElementById("newSignature");
             var context = canvas.getContext("2d");
@@ -75,16 +83,20 @@ var zkSignature = (function () {
             var calculate = false;
             var widthOld = 1;
             var distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
+            var lastCanvasWidth = -1;
+            var lastDataUrl;
             window.onresize = function resizeCanvas() {
                 if (initialized && window.innerWidth != screenwidth) {
-                        dataURL = getDataURL();
-                        empty = true;
-                        screenwidth = window.innerWidth;
-                        canvas.width = screenwidth - 100;
-                        canvas.height = (canvas.width / 3.1);
-                        imageToCanvas(dataURL);
+                    if (lastCanvasWidth < window.innerWidth-100) {
+                        lastDataUrl = getDataURL();
+                        lastCanvasWidth = canvas.width;
                     }
-                    return dataURL;
+                    screenwidth = window.innerWidth;                    
+                    canvas.width = screenwidth - 100;
+                    canvas.height = (canvas.width / 3.1);
+                    imageToCanvas(lastDataUrl);
+                    var distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
+                    }
                 }
             //functions
             {
@@ -213,6 +225,7 @@ var zkSignature = (function () {
                     context.stroke();
                     pixels.push('e');
                     calculate = false;
+                    lastCanvasWidth = -1;
                 };
 
             }

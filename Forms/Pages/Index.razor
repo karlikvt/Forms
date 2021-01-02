@@ -163,8 +163,9 @@ Bedingungen, die Fristen und das Verfahren für die Ausübung des Widerrufsrecht
         if (!modalResult.Cancelled)
         {
             image = modalResult.Data.ToString();
-            await JsRuntime.InvokeAsync<object>("exampleJsFunctions.imageToCanvas", image);
             await JsRuntime.InvokeAsync<object>("zkSignature.capture", false);
+            await JsRuntime.InvokeAsync<object>("exampleJsFunctions.imageToCanvas", image);
+
         }
     }
 
