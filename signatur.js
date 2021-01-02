@@ -96,6 +96,10 @@ var zkSignature = (function () {
                     canvas.height = (canvas.width / 3.1);
                     imageToCanvas(lastDataUrl);
                     distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
+                    context.fillStyle = "#fff";
+                    context.strokeStyle = "#444";
+                    context.lineWidth = 1.2 * canvas.width * 1.0 / 465;
+                    context.lineCap = "round";
                     }
                 }
             //functions
