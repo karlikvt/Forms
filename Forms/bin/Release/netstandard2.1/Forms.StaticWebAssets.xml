@@ -1,4 +1,0 @@
-﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="C:\Users\Voth\source\repos\Forms\Forms\bin\Release\netstandard2.1\wwwroot\" />
-  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\Voth\.nuget\packages\blazored.modal\5.1.0\build\..\staticwebassets\" />
-</StaticWebAssets>

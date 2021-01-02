@@ -24,6 +24,9 @@ a, .btn-link {
     box-shadow: 0 0 0 0.1rem rgba(13, 105, 8, 0.25) !important;
 }
 
+button {
+    box-shadow: none !important;
+}
 
 app {
     position: relative;
