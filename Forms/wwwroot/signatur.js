@@ -73,7 +73,7 @@ var zkSignature = (function () {
             
 
             context.fillStyle = "#fff";
-            context.strokeStyle = "#444";
+            context.strokeStyle = "#2b2c7c";
 
             var disableSave = true;
             var pixels = [];
@@ -97,7 +97,7 @@ var zkSignature = (function () {
                     imageToCanvas(lastDataUrl);
                     distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
                     context.fillStyle = "#fff";
-                    context.strokeStyle = "#444";
+                    context.strokeStyle = "#2b2c7c";
                     context.lineWidth = 1.2 * canvas.width * 1.0 / 465;
                     context.lineCap = "round";
                     }
@@ -196,20 +196,21 @@ var zkSignature = (function () {
                     distSum = distanceCurr;
 
                     for (var i = 1; i < distanceHist.length; i++) {
-                        distanceHist[i] = distanceHist[i - 1];
+                        distanceHist[i-1] = distanceHist[i];
                         distSum += distanceHist[i];
                     }
-                    distanceHist[0] = distanceCurr;
+                    distanceHist[distanceHist.length-1] = distanceCurr;
+                    
                     distance = distSum / distanceHist.length;
                     lineWidth = 1;
-                    if (distance > 3) {
+                    if (distance > 3*1.5) {
                         lineWidth = 2;
                     }
-                    else if (distance < 1) {
+                    else if (distance < 1*1.5) {
                         lineWidth = 4;
                     }
                     else {
-                        lineWidth = 5 - distance;
+                        lineWidth = 5 - distance/1.5;
                     }
 
                     context.lineWidth = lineWidth * canvas.width * 1.0 / 465;
