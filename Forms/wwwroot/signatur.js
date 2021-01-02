@@ -48,7 +48,7 @@ var zkSignature = (function () {
             screenwidth = window.innerWidth;
 
             if (screenwidth < 10080) {
-                canvas.width = screenwidth - 100;
+                canvas.width = screenwidth - 80;
                 canvas.height = (canvas.width / 3.1);
             } else {
                 canvas.width = 465;
@@ -87,15 +87,15 @@ var zkSignature = (function () {
             var lastDataUrl;
             window.onresize = function resizeCanvas() {
                 if (initialized && window.innerWidth != screenwidth) {
-                    if (lastCanvasWidth < window.innerWidth-100) {
+                    if (lastCanvasWidth < window.innerWidth-80) {
                         lastDataUrl = getDataURL();
                         lastCanvasWidth = canvas.width;
                     }
                     screenwidth = window.innerWidth;                    
-                    canvas.width = screenwidth - 100;
+                    canvas.width = screenwidth - 80;
                     canvas.height = (canvas.width / 3.1);
                     imageToCanvas(lastDataUrl);
-                    var distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
+                    distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
                     }
                 }
             //functions
@@ -226,6 +226,7 @@ var zkSignature = (function () {
                     pixels.push('e');
                     calculate = false;
                     lastCanvasWidth = -1;
+                    distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
                 };
 
             }
