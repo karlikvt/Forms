@@ -94,7 +94,7 @@ var zkSignature = (function () {
                     if (dataURL !== undefined && dataURL !== null) {
                         var image, imageData;
                         image = new Image();
-
+                        context.imageSmoothingQuality = 'high';
                         image.addEventListener('load', function () {
                             context.drawImage(image, 0, 0, canvas.width, canvas.height);
                             //how do i return this?
