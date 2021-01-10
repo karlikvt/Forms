@@ -6,17 +6,6 @@ var zkSignature = (function () {
     var isEditingEnabled = true;
     var initialized = false;
 
-    /*window.onresize = resizeCanvas;
-    function resizeCanvas() {
-        if (initialized) {
-            dataURL = getDataURL()();
-            this.clear();
-            this.capture(zkSignature.isEditingEnabled);
-            this.imageToCanvas(dataURL);
-        }
-        return dataURL;
-    }*/
-
     return {
         //public functions
         capture: function (editingEnabled) {
@@ -85,13 +74,20 @@ var zkSignature = (function () {
             var distanceHist = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3];
             var lastCanvasWidth = -1;
             var lastDataUrl;
-            window.onresize = function resizeCanvas() {
+            var resizeId;
+            window.onresize = function rez() {
+                clearTimeout(resizeId);
+                resizeId = setTimeout(resizeCanvas, 100);
+            }
+            
+
+            function resizeCanvas() {
                 if (initialized && window.innerWidth != screenwidth) {
-                    if (lastCanvasWidth < window.innerWidth-80) {
+                    if (lastCanvasWidth < window.innerWidth - 80) {
                         lastDataUrl = getDataURL();
                         lastCanvasWidth = canvas.width;
                     }
-                    screenwidth = window.innerWidth;                    
+                    screenwidth = window.innerWidth;
                     canvas.width = screenwidth - 80;
                     canvas.height = (canvas.width / 3.1);
                     imageToCanvas(lastDataUrl);
@@ -100,8 +96,8 @@ var zkSignature = (function () {
                     context.strokeStyle = "#2b2c7c";
                     context.lineWidth = 1.2 * canvas.width * 1.0 / 465;
                     context.lineCap = "round";
-                    }
                 }
+            }
             //functions
             {
                 
